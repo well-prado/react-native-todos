@@ -34,17 +34,14 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
                 testID={`button-${index}`}
                 activeOpacity={0.7}
                 style={styles.taskButton}
-                // style={ item.done ? styles.taskMarker : styles.taskButton }
-                //TODO - use onPress (toggle task) prop
                 onPress={() => toggleTaskDone(item.id)}
               >
-                <View 
+                <View
                   testID={`marker-${index}`}
-                  //TODO - use style prop 
                   style={item.done ? styles.taskMarkerDone : styles.taskMarker}
                 >
-                  { item.done && (
-                    <Icon 
+                  {item.done && (
+                    <Icon
                       name="check"
                       size={12}
                       color="#FFF"
@@ -52,8 +49,7 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
                   )}
                 </View>
 
-                <Text 
-                  //TODO - use style prop
+                <Text
                   style={item.done ? styles.taskTextDone : styles.taskText}
                 >
                   {item.title}
@@ -77,7 +73,6 @@ export function TasksList({ tasks, toggleTaskDone, removeTask }: TasksListProps)
     />
   )
 }
-
 const styles = StyleSheet.create({
   taskButton: {
     flex: 1,
