@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { findNodeHandle, StyleSheet, View } from 'react-native';
 
 import { Header } from '../components/Header';
 import { Task, TasksList } from '../components/TasksList';
@@ -9,15 +9,34 @@ export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   function handleAddTask(newTaskTitle: string) {
-    //TODO - add new task
+    const task : Task = {
+      done: false,
+      id: new Date().getTime(),
+      title: newTaskTitle,
+    }
+    setTasks(oldState => [...oldState, task]);
   }
 
   function handleToggleTaskDone(id: number) {
-    //TODO - toggle task done if exists
-  }
+    const updatedTasks = tasks.map(task => ({ ...task }))
+    
+    const foundItem = updatedTasks.find(item => item.id === id) 
+      
+    if(!foundItem)
+      return;
+      // updatedTasks.find(task => task.id === id)!.done = updatedTasks.find(task => task.id === id)!.done === true ? false : true //WRONG WAY BY CROZA
+      foundItem.done = !foundItem.done;
+      setTasks(updatedTasks);
+    }
 
   function handleRemoveTask(id: number) {
-    //TODO - remove task from state
+    // setTasks(oldState => oldState.filter(
+    //   task => task.id !== id
+    // ));
+
+    const updatedTasks = tasks.filter(task => task.id !== id);
+
+    setTasks(updatedTasks);
   }
 
   return (
