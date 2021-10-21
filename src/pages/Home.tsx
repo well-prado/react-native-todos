@@ -11,7 +11,7 @@ export function Home() {
   function handleAddTask(newTaskTitle: string) {
     const updatedTasks = tasks.map(task => ({ ...task }))
 
-    const findDuplicatedTask = updatedTasks.find(item => newTaskTitle === item.title)
+    const findDuplicatedTask = updatedTasks.find(task => task.title === newTaskTitle)
 
     if (findDuplicatedTask)
       return Alert.alert('Task already exists', 'You cannot add a new task with the same name!', [
@@ -32,7 +32,7 @@ export function Home() {
   function handleToggleTaskDone(id: number) {
     const updatedTasks = tasks.map(task => ({ ...task }))
 
-    const taskToBeMarkedAsDone = updatedTasks.find(item => item.id === id)
+    const taskToBeMarkedAsDone = updatedTasks.find(task => task.id === id)
 
     if (!taskToBeMarkedAsDone)
       return;
@@ -45,7 +45,7 @@ export function Home() {
   function handleEditTask(id: number, taskNewTitle: string) {
     const updatedTasks = tasks.map(task => ({ ...task }))
 
-    const editTask = updatedTasks.find(item => taskNewTitle !== item.title);
+    const editTask = updatedTasks.find(task => task.id !== id);
 
     if (!editTask)
       return;
@@ -83,7 +83,7 @@ export function Home() {
         tasks={tasks}
         toggleTaskDone={handleToggleTaskDone}
         removeTask={handleRemoveTask}
-      // editTask={}
+        editTask={() => handleEditTask}
       />
     </View>
   )

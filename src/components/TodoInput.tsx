@@ -22,9 +22,9 @@ export function TodoInput({ addTask }: TodoInputProps) {
 
   return (
     <View style={styles.inputContainer}>
-      <TextInput 
+      <TextInput
         ref={textInputRef}
-        style={styles.input} 
+        style={styles.input}
         placeholder="Adicionar novo todo..."
         placeholderTextColor="#B2B2B2"
         returnKeyType="send"
@@ -32,6 +32,7 @@ export function TodoInput({ addTask }: TodoInputProps) {
         onChangeText={value => setTask(value)}
         onSubmitEditing={handleAddNewTask}
         value={task}
+        maxLength={20}
       />
       <TouchableOpacity
         testID="add-new-task-button"
